@@ -1,0 +1,26 @@
+import re
+from typing import Optional
+
+def is_valid_email(email: str) -> bool:
+    """Check if the email address is valid."""
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(pattern, email) is not None
+
+def retrieve_email() -> Optional[str]:
+    """Retrieve and validate an email address from user input."""
+    print("Please enter your email address:")
+    email = input().strip()
+    
+    if is_valid_email(email):
+        print("Email address is valid.")
+        return email
+    else:
+        print("Invalid email address format. Please try again.")
+        return None
+
+if __name__ == "__main__":
+    valid_email = None
+    while not valid_email:
+        valid_email = retrieve_email()
+    
+    print(f"Retrieved email: {valid_email}")
